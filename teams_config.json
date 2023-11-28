@@ -1,0 +1,43 @@
+{
+    "buraquinho": {
+        "board_id": "BURACO",
+        "channel": "#transformacao-agil",
+        "wip_limit": 8,
+        "expedite_limit": 2,
+        "states": [
+            "Development",
+            "Ready for Code Review",
+            "Code Review",
+            "Build",
+            "Ready to Validate",
+            "Validate",
+            "Ready to Merge",
+            "Merge",
+            "Selected to Homolog",
+            "Homologation"
+        ]
+    },
+    "eng-bros": {
+        "board_id": "ENG",
+        "channel": "#transformacao-agil",
+        "wip_limit": 8,
+        "expedite_limit": 0,
+        "states": [
+            "Development",
+            "Ready to Validate",
+            "Validation"
+        ]
+    },
+    "team-gp": {
+        "board_id": "GP",
+        "channel": "#transformacao-agil",
+        "wip_limit": 6,
+        "expedite_limit": 1,
+        "states": [
+            "Development",
+            "Code Review",
+            "Ready to Validate",
+            "Validate"
+        ]
+    }
+}
