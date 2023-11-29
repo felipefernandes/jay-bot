@@ -64,7 +64,7 @@ Contribuições são sempre bem-vindas! Se você tem ideias para melhorar o JAY 
 Licença
 -------
 
-JAY é distribuído sob a licença [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html), permitindo que seja livremente utilizado e modificado.
+JAY é distribuído sob a licença [Apache License](http://www.apache.org/licenses/), permitindo que seja livremente utilizado e modificado.
 
 Contato
 -------
