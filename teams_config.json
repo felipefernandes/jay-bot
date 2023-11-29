@@ -1,5 +1,6 @@
 {
     "buraquinho": {
+        "team_name": "Buraco",
         "board_id": "BURACO",
         "channel": "#transformacao-agil",
         "wip_limit": 8,
@@ -18,6 +19,7 @@
         ]
     },
     "eng-bros": {
+        "team_name": "Engenharia",
         "board_id": "ENG",
         "channel": "#transformacao-agil",
         "wip_limit": 8,
@@ -29,9 +31,10 @@
         ]
     },
     "team-gp": {
+        "team_name": "Portifólio",
         "board_id": "GP",
         "channel": "#transformacao-agil",
-        "wip_limit": 1,
+        "wip_limit": 6,
         "expedite_limit": 1,
         "states": [
             "Development",
