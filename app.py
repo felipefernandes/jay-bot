@@ -7,7 +7,7 @@ from main import check_teams_wip
 app = Flask(__name__)
 
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/wipcheck', methods=['POST'])
 def webhook():
     """
     # Aqui você pode processar os dados recebidos do JIRA se necessário
