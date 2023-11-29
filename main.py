@@ -1,18 +1,15 @@
 """
 Esse módulo configura e executa um bot Slack que interage com JIRA.
 """
-
 import json
 from slack_sdk import WebClient
 from config import BOT_USER_OAUTH_TOKEN, JIRA_API_TOKEN, JIRA_SERVER_URL, JIRA_USER_EMAIL
-from jira_client import get_jira_client
+from jira_client import get_jira_client, check_wip_limit
 from slack_client import send_slack_message
 
 
 def check_teams_wip():
-    """
-    Carregar configurações das equipes
-    """
+    # Carregar configurações das equipes
     try:
         with open('teams_config.json', encoding='utf-8') as f:
             teams_config = json.load(f)

@@ -3,6 +3,7 @@ Modulo de interacao com Slack
 """
 from slack_sdk.errors import SlackApiError
 
+
 def send_slack_message(client, channel, message):
     """
     Envia uma mensagem para um canal específico no Slack.
