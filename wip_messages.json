@@ -1,0 +1,14 @@
+{
+    "messages": [
+        "Alerta! O time {team} está com o board cheião! Hora de revisar o WIP. 🍽️",
+        "Atenção, {team}! O WIP está mais alto que o Pão de Açúcar! 🌄",
+        "Alerta, {team}! Vocês estão acumulando tarefas como se fossem troféus. Hora de dar uma segurada! 🏆🚫",
+        "Ei, {team}, parece que vocês estão tentando bater um recorde mundial de WIP. Talvez não seja a melhor ideia... 🌍🏅",
+        "Ops! {team} está com mais tarefas do que cariocas na praia em dia de sol. Vamos aliviar isso aí! 🏖️😅",
+        "Parece que {team} está colecionando tarefas como se fossem figurinhas da Copa. Vamos tentar completar o álbum mais tarde, ok? ⚽📚",
+        "Uau, {team}! Com tanto WIP, vocês estão quase ganhando um prêmio por multitarefa. Só que não é um prêmio bom... 🏆👀",
+        "Atenção, {team}! O WIP está tão alto que já estamos vendo sinais de altitude. Hora de descer um pouco! 🏔️😵",
+        "Ei, {team}, com tanto WIP, vocês estão parecendo um buffet de tarefas. Vamos maneirar no prato, por favor! 🍽️😬",
+        "Alerta de WIP para {team}! Se WIP fosse dinheiro, vocês estariam ricos. Mas não é, então vamos reduzir? 💰🚫"
+    ]
+}
