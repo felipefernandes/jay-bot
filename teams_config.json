@@ -2,7 +2,7 @@
     "buraquinho": {
         "team_name": "Buraco",
         "board_id": "BURACO",
-        "channel": "#transformacao-agil",
+        "channel": "#buraquinho",
         "wip_limit": 8,
         "expedite_limit": 2,
         "states": [
@@ -33,7 +33,7 @@
     "team-gp": {
         "team_name": "Portifólio",
         "board_id": "GP",
-        "channel": "#transformacao-agil",
+        "channel": "#team-gp",
         "wip_limit": 6,
         "expedite_limit": 1,
         "states": [
