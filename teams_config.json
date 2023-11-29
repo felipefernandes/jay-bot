@@ -31,7 +31,7 @@
     "team-gp": {
         "board_id": "GP",
         "channel": "#transformacao-agil",
-        "wip_limit": 6,
+        "wip_limit": 1,
         "expedite_limit": 1,
         "states": [
             "Development",
