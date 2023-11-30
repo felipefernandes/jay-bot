@@ -12,13 +12,13 @@ app = Flask(__name__)
 
 @app.route('/wipcheck', methods=['POST'])
 def webhook():
-    # Extrair o team_id do header da requisição
+    # Extrair o team_id do cabeçalho da requisição
     team_id = request.headers.get('team_id')
 
     if not team_id:
         return "Header 'team_id' não encontrado", 400
 
-    # Chamar a função check_team_wip com o team_id
+    # Chamar a função de verificação passando o team_id
     check_team_wip(team_id)
     return "Webhook processado", 200
 
