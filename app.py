@@ -1,7 +1,7 @@
 """
 Modulo Flask para tratar e processar os webhooks
 """
-from flask import Flask, request
+from flask import Flask
 from main import check_teams_wip
 
 app = Flask(__name__)
