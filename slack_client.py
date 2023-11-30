@@ -14,6 +14,10 @@ def send_slack_message(client, channel, message):
     """
     try:
         response = client.chat_postMessage(channel=channel, text=message)
-        assert response["message"]["text"] == message
+        # Verifique se a resposta contém um status de sucesso
+        if not response.get("ok"):
+            # Trate o caso em que a resposta não é bem-sucedida
+            print(f"Erro ao enviar mensagem: {response.get('error')}")
     except SlackApiError as e:
-        assert e.response["error"]
+        # Log ou trate o erro de maneira apropriada
+        print(f"Erro na API do Slack: {e.response['error']}")
