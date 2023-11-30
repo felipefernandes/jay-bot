@@ -21,7 +21,7 @@
     "eng-bros": {
         "team_name": "Engenharia",
         "board_id": "ENG",
-        "channel": "#transformacao-agil",
+        "channel": "#the-engineer-bros",
         "wip_limit": 8,
         "expedite_limit": 0,
         "states": [
