@@ -29,7 +29,7 @@ def check_wip_limit(jira_client, board_id, wip_limit, states):
     """
 
     states_query = "', '".join(states)
-    jql_query = f"project = {board_id} AND status IN ('{states_query}')"
+    jql_query = f"project = {board_id} AND issuetype not in (Epic) AND status IN ('{states_query}')"
     issues = jira_client.search_issues(jql_query)
 
     # Verificar se o limite de WIP foi excedido
