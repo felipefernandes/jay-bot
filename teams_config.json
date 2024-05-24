@@ -42,5 +42,19 @@
             "Ready to Validate",
             "Validate"
         ]
+    },
+    "dominoes-battle": {
+        "team_name": "Dominoes Battle",
+        "board_id": "DOB",
+        "channel": "#dominoes-battle",
+        "wip_limit": 100,
+        "expedite_limit": 100,
+        "states": [
+            "Development",
+            "Development Done",
+            "To Validate",
+            "In Validation",
+            "Done"
+        ]
     }
 }
