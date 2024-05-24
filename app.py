@@ -42,6 +42,7 @@ def sheet_update():
     # Processando e enviando mensagens para o Slack
     sheet_notification_update(
         team_id, sheet_name, num_rows_updated)
+    return jsonify({"message": "Webhook processado"}), 200
 
 
 if __name__ == "__main__":
