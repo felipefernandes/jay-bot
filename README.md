@@ -13,6 +13,7 @@ Funcionalidades
 -   Configuração Flexível: Cada equipe pode configurar seus próprios limites de WIP e canais de Slack correspondentes.
 -   Integração com JIRA: JAY se conecta ao JIRA para obter informações em tempo real sobre o status das tarefas e projetos.
 -   Respostas Divertidas e Engajadoras: Quando um limite de WIP é excedido, JAY envia mensagens variadas, mantendo o ambiente leve e motivador.
+-   *(NEW)* Método para notificação no slack sobre atualizações de arquivos
 
 Como Configurar
 ---------------
@@ -30,6 +31,10 @@ Como Configurar
 3.  Configuração das Equipes:
 
     -   Edite o arquivo `teams_config.json` para definir os limites de WIP, canais do Slack e outras configurações específicas de cada equipe.
+
+4.  Instale dependencias:
+
+    -   Execute o comando `pip install -r requirements.txt`
 
 4.  Execução:
 
@@ -59,7 +64,7 @@ A interação com o JIRA é feita a partir do recurso de AUTOMATION (automatiza�
 Contribuindo para o JAY
 -----------------------
 
-Contribuições são sempre bem-vindas! Se você tem ideias para melhorar o JAY ou quer adicionar novas funcionalidades, sinta-se à vontade para criar um fork do repositório e enviar suas Pull Requests. Antes de contribuir, por favor, leia nosso guia de contribuição.
+Contribuições são sempre bem-vindas! Se você tem ideias para melhorar o JAY ou quer adicionar novas funcionalidades, sinta-se à vontade para criar um fork do repositório e enviar suas Pull Requests. Antes de contribuir, por favor, leia o guia de contribuição.
 
 Licença
 -------
