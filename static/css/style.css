@@ -1,0 +1,32 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+}
