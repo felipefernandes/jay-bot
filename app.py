@@ -4,7 +4,7 @@ Modulo Flask para tratar e processar os webhooks
 # pylint: disable=missing-module-docstring
 # pylint: disable=missing-class-docstring
 # pylint: disable=missing-function-docstring
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from main import check_team_wip, sheet_notification_update
 
 app = Flask(__name__)
@@ -43,6 +43,11 @@ def sheet_update():
     sheet_notification_update(
         team_id, sheet_name, num_rows_updated)
     return jsonify({"message": "Webhook processado"}), 200
+
+
+@app.route('/', methods=['GET'])
+def homepage():
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
