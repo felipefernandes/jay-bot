@@ -4,33 +4,22 @@ Modulo de interacao com o JIRA
 from jira import JIRA
 
 
-def get_jira_client(jira_token, jira_server, jira_user_email):
-    """
-    Configura e retorna um cliente JIRA.
+class JiraClient:
+    def __init__(self, api_token, server_url, user_email):
+        self.client = JIRA(
+            server=server_url,
+            basic_auth=(user_email, api_token)
+        )
 
-    :param jira_token: Token de acesso para a API do JIRA.
-    :param jira_server: URL do servidor JIRA.
-    :return: Instância do cliente JIRA.
-    """
-    options = {'server': jira_server}
-    jira_client = JIRA(options, basic_auth=(jira_user_email, jira_token))
-    return jira_client
+    def check_wip_limit(self, board_id, wip_limit, states):
+        """
+        Verifica se o limite de WIP foi atingido para o board e estados especificados.
 
-
-def check_wip_limit(jira_client, board_id, wip_limit, states):
-    """
-    Verifica se o limite de WIP foi excedido em um quadro do JIRA.
-
-    :param jira_client: Cliente JIRA configurado.
-    :param board_id: ID do quadro no JIRA.
-    :param wip_limit: Limite de WIP para itens normais.
-    :param expedite_limit: Limite de WIP para itens expedidos.
-    :return: True se o limite de WIP foi excedido, False caso contrário.
-    """
-
-    states_query = "', '".join(states)
-    jql_query = f"project = {board_id} AND status IN ('{states_query}')"
-    issues = jira_client.search_issues(jql_query)
-
-    # Verificar se o limite de WIP foi excedido
-    return len(issues) > wip_limit
+        :param board_id: ID do board no JIRA.
+        :param wip_limit: Limite de WIP.
+        :param states: Lista de estados a serem verificados.
+        :return: True se o limite de WIP for atingido, False caso contrário.
+        """
+        jql = f'board = {board_id} AND status in ({",".join(states)})'
+        issues = self.client.search_issues(jql)
+        return len(issues) > wip_limit
