@@ -59,6 +59,5 @@ def sheet_notification_update(team_id, sheet_name, num_rows_updated):
 
     slack_client = SlackClient(config['bot_user_oauth_token'])
 
-    message = f"Foram alteradas {num_rows_updated} linhas na planilha 
-        '{sheet_name}' esta semana."
+    message = f"Foram alteradas {num_rows_updated} linhas na planilha '{sheet_name}' esta semana."
     slack_client.send_message(team_config['channel'], message)
