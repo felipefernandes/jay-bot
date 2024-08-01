@@ -9,11 +9,17 @@ from main import check_team_wip, sheet_notification_update
 
 app = Flask(__name__)
 
-# Mensagens sobre estouro do WIP no Slack
+
+@app.route('/meeting_post', methods=['POST'])
+def meeting_post():
+    """Função para tratar o webhook de postagem de notificacao de reunião"""
+    return
+# TODO: Implementar tratamento do webhook
 
 
 @app.route('/wipcheck', methods=['POST'])
 def wip_check():
+    """Mensagens sobre estouro do WIP no Slack"""
     data = request.get_json()
 
     if not data or 'team_id' not in data:
@@ -23,11 +29,10 @@ def wip_check():
     check_team_wip(team_id)
     return jsonify({"message": "Webhook processado"}), 200
 
-# Mensagens sobre atualização de google Sheets no Slack
-
 
 @app.route('/sheet-update', methods=['POST'])
 def sheet_update():
+    """Mensagens sobre atualização de google Sheets no Slack"""
     data = request.get_json()
 
     if not data or 'team_id' not in data or 'sheet_name' not in data or 'num_rows_updated' not in data:
