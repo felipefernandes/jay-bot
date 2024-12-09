@@ -1,6 +1,9 @@
 """
 Modulo de configuracao
 """
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-class-docstring
+# pylint: disable=missing-function-docstring
 import os
 
 BOT_USER_OAUTH_TOKEN = os.getenv('BOT_USER_OAUTH_TOKEN')
