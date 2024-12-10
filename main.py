@@ -51,10 +51,10 @@ def check_progress_status(team_id, epic_id, label):
         percent_complete = (done_issues / total_issues) * \
             100 if total_issues > 0 else 0
         message = (
-            f"📊 *Progresso do Marco: {label}*\n"
-            f"🗂️ Épico: {epic_id}\n"
-            f"- Total de Tarefas: {total_issues}\n"
-            f"- Concluídas: {done_issues} ({percent_complete:.2f}%)"
+            f"📊 *Progresso do {label}*\n"
+            f"> 🗂️ Épico: {epic_id}\n"
+            f"> - Total de Tarefas: {total_issues}\n"
+            f"> - Concluídas: {done_issues} ({percent_complete:.2f}%)"
         )
 
     # Enviar a mensagem para o Slack
