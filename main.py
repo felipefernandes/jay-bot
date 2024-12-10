@@ -20,7 +20,7 @@ def load_json_file(filename):
         with open(filename, encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        logger.error(f"Arquivo de configuração não encontrado: {filename}")
+        logger.error("Arquivo de configuração não encontrado: %s", filename)
         exit(1)
 
 
@@ -30,7 +30,7 @@ def check_progress_status(team_id, epic_id, label):
 
     team_config = teams_config.get(team_id)
     if not team_config:
-        logger.error(f"Configuração não encontrada para o time: {team_id}")
+        logger.error("Configuração não encontrada para o time: %s", team_id)
         return
 
     slack_client = SlackClient(config['bot_user_oauth_token'])
@@ -42,8 +42,9 @@ def check_progress_status(team_id, epic_id, label):
 
     progress_status = jira_client.check_progress_status(epic_id, label)
 
-    if "error" in progress_status: 
-        message = f"⚠️ *Erro ao obter status de progresso do marco:*\n{progress_status['error']}"
+    if "error" in progress_status:
+        message = logger.error(
+            "⚠️ *Erro ao obter status de progresso do marco:*\n%s", progress_status['error'])
     else:
         total_issues = progress_status["total_issues"]
         done_issues = progress_status["done_issues"]
@@ -67,7 +68,7 @@ def check_team_wip(team_id):
 
     team_config = teams_config.get(team_id)
     if not team_config:
-        logger.error(f"Configuração não encontrada para o time: {team_id}")
+        logger.error("Configuração não encontrada para o time: %s", team_id)
         return
 
     slack_client = SlackClient(config['bot_user_oauth_token'])
@@ -93,7 +94,7 @@ def sheet_notification_update(team_id, sheet_name, num_rows_updated):
 
     team_config = teams_config.get(team_id)
     if not team_config:
-        logger.error(f"Configuração não encontrada para o time: {team_id}")
+        logger.error("Configuração não encontrada para o time: %s", team_id)
         return
 
     slack_client = SlackClient(config['bot_user_oauth_token'])
