@@ -33,8 +33,8 @@ def create_progress_bar(percent, length=20):
     :return: Uma string representando a barra de progresso.
     """
     filled_length = int(length * percent // 100)
-    bar = "█" * filled_length + "-" * (length - filled_length)
-    return f"[{bar}] {percent:.2f}%"
+    progress_bar = "█" * filled_length + "-" * (length - filled_length)
+    return f"[{progress_bar}] {percent:.2f}%"
 
 
 def check_progress_status(team_id, epic_id, label):
@@ -53,31 +53,71 @@ def check_progress_status(team_id, epic_id, label):
         config['jira_user_email']
     )
 
-    # Obter status de progresso e titulo do epico
+    # Obter status de progresso e título do épico
     progress_status = jira_client.check_progress_status(epic_id, label)
     epic_summary = jira_client.get_epic_summary(epic_id)
     epic_display = f"{epic_summary} ({epic_id})" if epic_summary else epic_id
 
     if "error" in progress_status:
-        message = logger.error(
-            "⚠️ *Erro ao obter status de progresso do marco:*\n%s", progress_status['error'])
-    else:
-        total_issues = progress_status["total_issues"]
-        done_issues = progress_status["done_issues"]
-        percent_complete = (done_issues / total_issues) * \
-            100 if total_issues > 0 else 0
-        progress_bar = create_progress_bar(percent_complete)
-        message = (
-            f"📊 *Relatório de Progresso *\n"
-            f"> --------------------------\n"
-            f"> 🗂️ Épico: {epic_display}\n"
-            f"> > Total de Tarefas: {total_issues}\n"
-            f"> > Concluídas: {done_issues}\n"
-            f"> > {progress_bar}"
-        )
+        message = f"⚠️ *Erro ao obter status de progresso do marco:*\n{progress_status['error']}"
+        slack_client.send_message(
+            channel=team_config['channel'], message=message)
+        return
 
-    # Enviar a mensagem para o Slack
-    slack_client.send_message(channel=team_config['channel'], message=message)
+    total_issues = progress_status["total_issues"]
+    done_issues = progress_status["done_issues"]
+    percent_complete = (done_issues / total_issues) * \
+        100 if total_issues > 0 else 0
+    progress_bar = create_progress_bar(percent_complete)
+
+    # Decide entre usar blocos ou mensagem simples
+    use_blocks = True  # Alterne para False se preferir mensagens simples
+
+    if use_blocks:
+        # Cria os blocos da mensagem
+        blocks = [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": f"*📊 Progresso do {label}*"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": f"*Épico*: {epic_display}"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": f"• Total de Tarefas: {total_issues}\n• Concluídas: {done_issues} ({percent_complete:.2f}%)"
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": f"Progresso: {progress_bar}"
+                }
+            }
+        ]
+        slack_client.send_message(
+            channel=team_config['channel'], blocks=blocks)
+    else:
+        # Envia a mensagem simples
+        message = (
+            f"📊 *Progresso do {label}*\n"
+            f"🗂️ Épico: {epic_display}\n"
+            f"- Total de Tarefas: {total_issues}\n"
+            f"- Concluídas: {done_issues} ({percent_complete:.2f}%)\n"
+            f"- Progresso: {progress_bar}"
+        )
+        slack_client.send_message(
+            channel=team_config['channel'], message=message)
 
 
 def check_team_wip(team_id):
