@@ -5,21 +5,23 @@ Modulo de interacao com Slack
 # pylint: disable=missing-class-docstring
 # pylint: disable=missing-function-docstring
 
+import os
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
 
 class SlackClient:
-    def __init__(self, token):
+    def __init__(self, token=None):
+        if not token:
+            # Carrega o token do ambiente se não for passado diretamente
+            token = os.getenv("BOT_OAUTH_TOKEN")
+            if not token:
+                raise ValueError(
+                    "O token do Slack não foi configurado corretamente.")
+
         self.client = WebClient(token=token)
 
     def send_message(self, channel, message, debug=0):
-        """
-        Envia uma mensagem para um canal específico no Slack.
-
-        :param channel: O canal para enviar a mensagem.
-        :param message: A mensagem a ser enviada.
-        """
         try:
             if debug == 1:
                 message = "⚠️ *Modo DEBUG Ativado*\n" + message
