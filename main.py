@@ -71,7 +71,7 @@ def check_progress_status(team_id, epic_id, label):
     progress_bar = create_progress_bar(percent_complete)
 
     # Decide entre usar blocos ou mensagem simples
-    use_blocks = True  # Alterne para False se preferir mensagens simples
+    use_blocks = False  # Alterne para False se preferir mensagens simples
 
     if use_blocks:
         # Cria os blocos da mensagem
