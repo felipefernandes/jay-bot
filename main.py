@@ -70,10 +70,10 @@ def check_progress_status(team_id, epic_id, label):
         message = (
             f"📊 *Relatório de Progresso *\n"
             f"> --------------------------\n"
-            f"> 🗂️ Épico: {epic_display}\n"
-            f"> > Total de Tarefas: {total_issues}\n"
-            f"> > Concluídas: {done_issues}\n"
-            f"> > {progress_bar}"
+            f"> 🗂️ Épico: *{epic_display}*\n"
+            f"> • Total de Tarefas: {total_issues}\n"
+            f"> • Concluídas: {done_issues}\n"
+            f"> • {progress_bar}"
         )
 
     # Enviar a mensagem para o Slack
