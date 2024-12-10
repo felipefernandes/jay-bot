@@ -24,6 +24,19 @@ def load_json_file(filename):
         exit(1)
 
 
+def create_progress_bar(percent, length=20):
+    """
+    Cria uma barra de progresso visual.
+
+    :param percent: Percentual de progresso (0-100).
+    :param length: Comprimento total da barra.
+    :return: Uma string representando a barra de progresso.
+    """
+    filled_length = int(length * percent // 100)
+    bar = "█" * filled_length + "-" * (length - filled_length)
+    return f"[{bar}] {percent:.2f}%"
+
+
 def check_progress_status(team_id, epic_id, label):
     config = get_config()
     teams_config = load_json_file('teams_config.json')
@@ -40,7 +53,10 @@ def check_progress_status(team_id, epic_id, label):
         config['jira_user_email']
     )
 
+    # Obter status de progresso e titulo do epico
     progress_status = jira_client.check_progress_status(epic_id, label)
+    epic_summary = jira_client.get_epic_summary(epic_id)
+    epic_display = f"{epic_summary} ({epic_id})" if epic_summary else epic_id
 
     if "error" in progress_status:
         message = logger.error(
@@ -50,11 +66,14 @@ def check_progress_status(team_id, epic_id, label):
         done_issues = progress_status["done_issues"]
         percent_complete = (done_issues / total_issues) * \
             100 if total_issues > 0 else 0
+        progress_bar = create_progress_bar(percent_complete)
         message = (
-            f"📊 *Progresso do {label}*\n"
-            f"> 🗂️ Épico: {epic_id}\n"
-            f"> - Total de Tarefas: {total_issues}\n"
-            f"> - Concluídas: {done_issues} ({percent_complete:.2f}%)"
+            f"📊 *Relatório de Progresso *\n"
+            f"> --------------------------\n"
+            f"> 🗂️ Épico: {epic_display}\n"
+            f"> > Total de Tarefas: {total_issues}\n"
+            f"> > Concluídas: {done_issues}\n"
+            f"> > {progress_bar}"
         )
 
     # Enviar a mensagem para o Slack
