@@ -57,12 +57,12 @@ class JiraClient:
 
         try:
             # Query for all issues matching the epic_id and label
-            jql = f'parent = {epic_id} AND status not in (Cancelled, Aborted) AND labels = "{label}"'
+            jql = f'parent = "{epic_id}" AND status not in (Cancelled, Aborted) AND labels = "{label}"'
             issues = self.client.search_issues(jql, maxResults=False)
             count_total = len(issues)
 
             # Query for completed issues
-            jql_done = f'parent = {epic_id} AND status = Done AND labels = "{label}"'
+            jql_done = f'parent = "{epic_id}" AND status = Done AND labels = "{label}"'
             issues_done = self.client.search_issues(jql_done, maxResults=False)
             count_done = len(issues_done)
 
