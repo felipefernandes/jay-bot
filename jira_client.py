@@ -73,3 +73,17 @@ class JiraClient:
             return {"error": str(e), "total_issues": 0, "done_issues": 0}
 
         return progress_status
+
+    def get_epic_summary(self, epic_id):
+        """
+        Obtém o título (summary) de um épico pelo ID.
+
+        :param epic_id: O ID do épico no JIRA.
+        :return: O título (summary) do épico, ou None em caso de erro.
+        """
+        try:
+            issue = self.client.issue(epic_id)
+            return issue.fields.summary
+        except Exception as e:
+            print(f"Erro ao buscar o summary do épico {epic_id}: {e}")
+            return None
