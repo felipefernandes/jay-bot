@@ -1,15 +1,15 @@
 {
     "version": 2,
-    "functions": {
-        "app.py": {
-            "runtime": "@vercel/python@4.7.1",
-            "maxDuration": 30
-        }
-    },
+    "builds": [
+      {
+        "src": "./app.py",
+        "use": "@vercel/python"
+      }
+    ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/app.py"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "/app.py"
+      }
     ]
-}
+  }
