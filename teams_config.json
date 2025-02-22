@@ -56,5 +56,24 @@
             "In Validation",
             "Done"
         ]
+    },
+    "lab": {
+        "team_name": "Buraco",
+        "board_id": "BURACO",
+        "channel": "#lordsofeuchre",
+        "wip_limit": 11,
+        "expedite_limit": 4,
+        "states": [
+            "Development",
+            "Ready for Code Review",
+            "Code Review",
+            "Build",
+            "Ready to Validate",
+            "Validate",
+            "Ready to Merge",
+            "Merge",
+            "Selected to Homolog",
+            "Homologation"
+        ]
     }
 }
