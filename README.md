@@ -60,6 +60,14 @@ A interação com o JIRA é feita a partir do recurso de AUTOMATION (automatiza�
 1. When: `Quando uma issue for movida para {SELECIONE AS ETAPAS DE FLUXO QUE ESTÃO DEPOIS DO PONTO DE COMPROMISSO E ANTES DO DONE}`
 2. Then: `Enviar um WEB REQUEST {web request URL é onde você publicou seu BOT, e o HTTP Method é POST}`
 
+Endpoint de Progresso
+---------------------
+
+Envie POST para `/check_progress_status` com `team_id`, `epic_id` e `label`.
+Se desejar omitir a mensagem motivacional gerada via GPT, inclua `BOTMESSAGE=0`
+no payload. Sem esse parâmetro, o bot enviará a mensagem motivacional
+automaticamente.
+
 
 Contribuindo para o JAY
 -----------------------

@@ -7,8 +7,14 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def check_progress_status(team_id, epic_id, label):
-    """Consulta o progresso do épico no JIRA e envia um relatório para o Slack."""
+def check_progress_status(team_id, epic_id, label, send_bot_message=True):
+    """Consulta o progresso do épico no JIRA e envia um relatório para o Slack.
+
+    :param team_id: ID do time
+    :param epic_id: ID do épico
+    :param label: label do marco para busca
+    :param send_bot_message: Indica se deve anexar mensagem motivacional
+    """
     config = get_config()
     teams_config = load_json_file('teams_config.json')
 
@@ -40,18 +46,19 @@ def check_progress_status(team_id, epic_id, label):
         percent_complete = (done_issues / total_issues) * 100 if total_issues > 0 else 0
         progress_bar = create_progress_bar(percent_complete)
 
-        # Gerar mensagem motivacional
-        mensagem_motivacional = gerar_mensagem_motivacional(percent_complete)
-
         # Enviar para Slack
         message = (
             f"📊 *Progresso do {label}*\n"
             f"🗂️ Épico: {epic_display}\n"
             f"- Total de Tarefas: {total_issues}\n"
             f"- Concluídas: {done_issues} ({percent_complete:.2f}%)\n"
-            f"- Progresso: {progress_bar}\n\n"
-            f"🎉 {mensagem_motivacional}"
+            f"- Progresso: {progress_bar}"
         )
+
+        if send_bot_message:
+            mensagem_motivacional = gerar_mensagem_motivacional(percent_complete)
+            message += f"\n\n🎉 {mensagem_motivacional}"
+
         slack_client.send_message(channel=team_config['channel'], message=message)
     except Exception as e:
         logger.error("Erro ao verificar progresso do épico %s: %s", epic_id, e)
