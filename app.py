@@ -28,9 +28,11 @@ def progress_status_check():
     team_id = data["team_id"]
     epic_id = data['epic_id']
     label = data['label']
+    botmessage_flag = str(data.get('BOTMESSAGE', '1'))
+    send_bot_message = botmessage_flag != '0'
 
     try:
-        check_progress_status(team_id, epic_id, label)
+        check_progress_status(team_id, epic_id, label, send_bot_message)
     except Exception as e:
         logger.error("Erro ao verificar progresso: %s", e)
         return jsonify({"error": "Erro ao processar webhook"}), 500
